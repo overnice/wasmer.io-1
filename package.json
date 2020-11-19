@@ -26,6 +26,7 @@
     "react-in-viewport": "^1.0.0-alpha.14",
     "react-responsive-carousel": "^3.2.10",
     "react-scrollmagic": "^2.2.0",
+    "scrollmagic": "^2.0.8",
     "xterm": "3.14.5"
   },
   "devDependencies": {

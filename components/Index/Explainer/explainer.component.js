@@ -17,6 +17,8 @@ import Python from '../../../public/images/languages/python.svg';
 import R from '../../../public/images/languages/r.svg';
 import Ruby from '../../../public/images/languages/ruby.svg';
 import Rust from '../../../public/images/languages/rust.svg';
+import ScrollMagic from "scrollmagic";
+import "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
 
 import IOS from '../../../public/images/platforms/ios.svg';
 import Android from '../../../public/images/platforms/android.svg';
@@ -50,6 +52,8 @@ export class ExplainerComponent extends Component {
 
       screenSmallerThanAnimation: false,
     };
+
+    this.controller = new ScrollMagic.Controller();
   }
 
   /**
@@ -208,6 +212,21 @@ export class ExplainerComponent extends Component {
     return marginLeft;
   }
 
+  initAnimations() {
+    new ScrollMagic.Scene({
+      triggerElement: "#explainer",
+      duration: 1400,
+      offset: 0,
+      indicators: true
+    })
+        .setTween("#languages", {
+          scale: 0.5,
+          color: "red"
+        })
+        .setPin("#explainer") // pins the element for the the scene's duration
+        .addTo(this.controller); // assign the scene to the controller
+  }
+
   componentDidMount() {
     this.setFixedVariables();
     this.calcMarginTop();
@@ -229,6 +248,9 @@ export class ExplainerComponent extends Component {
         { passive: true },
       );
     }
+
+    // init the animations
+    this.initAnimations();
   }
 
   render() {
@@ -303,7 +325,7 @@ export class ExplainerComponent extends Component {
                           </div>
                         )
                       })}
-                    </div>  
+                    </div>
                   </Scene>
                 </div>
               </div>
